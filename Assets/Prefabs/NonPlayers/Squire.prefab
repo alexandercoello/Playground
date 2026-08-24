@@ -1060,11 +1060,12 @@ GameObject:
   - component: {fileID: 924313685362396605}
   - component: {fileID: 391987227040284175}
   - component: {fileID: 188716454622915233}
-  - component: {fileID: 1734612787125344680}
+  - component: {fileID: 1236101374120938491}
   - component: {fileID: 7897522492748702130}
   - component: {fileID: 268350300706923886}
+  - component: {fileID: -2925968049263348009}
   m_Layer: 0
-  m_Name: StationaryTrainingDummy Y Bot
+  m_Name: Squire
   m_TagString: NonPlayerCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1081,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 11.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6690936589594575050}
@@ -1123,7 +1124,7 @@ Animator:
   m_GameObject: {fileID: 4038522380516617824}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e3cedfdb7402b244b1ffde1886ea282, type: 2}
+  m_Controller: {fileID: 9100000, guid: 18e3e6ab58037414d986d62cbe892f82, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1135,19 +1136,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1734612787125344680
-MonoBehaviour:
+--- !u!195 &1236101374120938491
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4038522380516617824}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67298d70358f68469eb7b885a440139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 2
+  avoidancePriority: 50
+  m_AngularSpeed: 350
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.7
+  m_BaseOffset: -0.12
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &7897522492748702130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,6 +1191,25 @@ MonoBehaviour:
   regenBeginDelay: 2.5
   regenCooldownTimer: 0
   RegenRate: 10
+--- !u!114 &-2925968049263348009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038522380516617824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1622ff5f0ac27594f88ba714f857b03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavigationType: 1
+  NavMeshAgent: {fileID: 1236101374120938491}
+  animator: {fileID: 188716454622915233}
+  PatrolRoute: {fileID: 0}
+  WanderArea: {fileID: 0}
+  MinRestBetweenWanderTime: 0
+  MaxRestBetweenWanderTime: 15
 --- !u!1 &4408660378108444708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1393,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 4ebfb9d96e23da944b0f0dc0b800b944, type: 3}
+  - {fileID: 2100000, guid: 676b1ad6ee049444d8e7c55556687e89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
