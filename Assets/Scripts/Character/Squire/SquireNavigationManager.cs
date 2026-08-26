@@ -13,20 +13,30 @@ namespace Scripts.Character.Squire
 
         void Start()
         {
-
-
             
         }
 
 
         void Update()
         {
-
-
             
         }
 
-
+        public void NavigateToRaycastHit(RaycastHit destination)
+        {
+            if (!NavMeshAgent.pathPending && !NavMeshAgent.hasPath)
+            {
+                NavMeshHit navmeshHit;
+                    
+                // 2. Sample within a small radius (e.g., 1.0 unit) to find the nearest valid NavMesh spot
+                if (NavMesh.SamplePosition(destination.point, out navmeshHit, 1.0f, NavMesh.AllAreas))
+                {
+                    // 3. Move agent to the validated NavMesh position
+                    NavMeshAgent.SetDestination(navmeshHit.position);
+                }
+            }           
+            
+        }
 
     }
 

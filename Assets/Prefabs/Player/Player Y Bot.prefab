@@ -875,6 +875,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PingKey: 326
+  PlayerCamera: {fileID: 5748410295230062964}
+  PingRange: 100
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2761491404170603667
 GameObject:
   m_ObjectHideFlags: 0

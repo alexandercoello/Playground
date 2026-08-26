@@ -2,6 +2,7 @@ using UnityEngine;
 using Scripts.Event;
 using Zenject;
 using Scripts.Event.Events;
+using UnityEngine.AI;
 
 namespace Scripts.Character.Player
 {
@@ -26,6 +27,16 @@ namespace Scripts.Character.Player
         [Header("Player Input Bools")]
         bool pingPressed;
 
+        [Header("Player")]
+        public Camera PlayerCamera;
+        public float PingRange = 100f;
+
+        
+        
+        RaycastHit pingedObject;
+        public LayerMask groundLayer;
+        public LayerMask interactableLayer;
+
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,13 +51,29 @@ namespace Scripts.Character.Player
         {
             pingPressed = Input.GetKeyDown(PingKey);
 
-            //If the ping key is pressed bring up the radial menu and allow the player to select a command for the squire to execute
             if (pingPressed)
             {
-                Debug.Log("Ping key pressed");
-                _eventmanager.Publish(new PlayerPingedEvent(PingType.Location));
+                PingTargetCheck(groundLayer);
             } 
             
         }
+
+        void PingTargetCheck(LayerMask targetLayer)
+        {
+            Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+            // Visual debug line in the Scene view
+            Debug.DrawRay(ray.origin, ray.direction * PingRange, Color.red);
+
+            if (Physics.Raycast(ray, out pingedObject, PingRange, targetLayer))
+            {
+                //Ping hit something in target Layer
+                Debug.Log($"Pinged object: {pingedObject.collider.gameObject.name} at position: {pingedObject.point}");
+                _eventmanager.Publish(new PlayerPingEvent(PingType.Location, pingedObject));
+                return;
+            }
+
+        }
+
     }
 }

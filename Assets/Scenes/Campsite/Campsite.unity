@@ -119,23 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4022225 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4038522380516617824, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
-  m_PrefabInstance: {fileID: 338002499}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4022233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4022225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39039c7a061da274ab1855f3e306baff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7222000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,14 +2667,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squire
       objectReference: {fileID: 0}
+    - target: {fileID: 4336464014178488088, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+      propertyPath: squireNavigationManager
+      value: 
+      objectReference: {fileID: 338002500}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4038522380516617824, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4022233}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+--- !u!114 &338002500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4686947134602981653, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+  m_PrefabInstance: {fileID: 338002499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ca4a6a8dd38d44a9a1770b93568f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &393710213
 PrefabInstance:
   m_ObjectHideFlags: 0

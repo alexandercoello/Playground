@@ -1,17 +1,20 @@
 using System;
+using UnityEngine;
 
 namespace Scripts.Event.Events
 {
     /// <summary>
     /// An event that occurs when the player pings something.
     /// </summary>
-    public class PlayerPingedEvent : IGameEvent
+    public class PlayerPingEvent : IGameEvent
     {
             public PingType PingType { get; }
+            public RaycastHit PingedObject { get; }
 
-            public PlayerPingedEvent(PingType pingType)
+            public PlayerPingEvent(PingType pingType, RaycastHit pingedObject)
             {
                 PingType = pingType;
+                PingedObject = pingedObject;
             }
 
     }
@@ -19,9 +22,9 @@ namespace Scripts.Event.Events
     public enum PingType
     {
         None,
-        Enemy,
-        Ally,
-        Item,
-        Location
+        Location,
+        Interactable,
+        Pickup,
+        Enemy
     }
 }

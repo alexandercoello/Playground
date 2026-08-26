@@ -1063,7 +1063,8 @@ GameObject:
   - component: {fileID: 1236101374120938491}
   - component: {fileID: 7897522492748702130}
   - component: {fileID: 268350300706923886}
-  - component: {fileID: -2925968049263348009}
+  - component: {fileID: 4336464014178488088}
+  - component: {fileID: 4686947134602981653}
   m_Layer: 0
   m_Name: Squire
   m_TagString: NonPlayerCharacter
@@ -1191,7 +1192,7 @@ MonoBehaviour:
   regenBeginDelay: 2.5
   regenCooldownTimer: 0
   RegenRate: 10
---- !u!114 &-2925968049263348009
+--- !u!114 &4336464014178488088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1200,16 +1201,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4038522380516617824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1622ff5f0ac27594f88ba714f857b03f, type: 3}
+  m_Script: {fileID: 11500000, guid: 39039c7a061da274ab1855f3e306baff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NavigationType: 1
+--- !u!114 &4686947134602981653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038522380516617824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ca4a6a8dd38d44a9a1770b93568f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   NavMeshAgent: {fileID: 1236101374120938491}
   animator: {fileID: 188716454622915233}
-  PatrolRoute: {fileID: 0}
-  WanderArea: {fileID: 0}
-  MinRestBetweenWanderTime: 0
-  MaxRestBetweenWanderTime: 15
 --- !u!1 &4408660378108444708
 GameObject:
   m_ObjectHideFlags: 0
