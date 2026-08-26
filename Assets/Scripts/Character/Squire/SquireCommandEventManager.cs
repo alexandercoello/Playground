@@ -1,29 +1,37 @@
 using System;
+using Scripts.Event;
+using Scripts.Event.Events;
+using UnityEngine;
+using Zenject;
 
 namespace Scripts.Character.Squire
 {
 	/// <summary>
-	/// Receives commands from the player and notifies interested listeners.
+	/// Receives commands from the player
 	/// </summary>
-	public static class SquireCommandEventManager
+	public class SquireCommandEventManager : MonoBehaviour
 	{
-		/// <summary>
-		/// C# event for scripts that need to react to player commands.
-		/// </summary>
-		public static event Action<string> CommandReceived;
+        private IEventManager _eventmanager;
 
-		/// <summary>
-		/// Sends a command received from the player to all registered listeners.
-		/// </summary>
-		public static void ReceiveCommand(string command)
+		[Inject]
+		public void Construct(IEventManager eventManager)
 		{
-			if (string.IsNullOrWhiteSpace(command))
-			{
-				return;
-			}
+			_eventmanager = eventManager;
 
-			command = command.Trim();
-			CommandReceived?.Invoke(command);
+		}
+
+		void Start()
+		{
+			// Initialization code here
+			_eventmanager.Subscribe<PlayerPingedEvent>(OnPlayerPinged);
+		}
+
+		private void OnPlayerPinged(PlayerPingedEvent pingEvent)
+		{
+			Debug.Log($"SquireCommandEventManager received PlayerPingedEvent with PingType: {pingEvent.PingType}");
+
+
+
 		}
 	}
 }

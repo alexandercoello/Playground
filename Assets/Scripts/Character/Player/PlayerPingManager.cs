@@ -1,5 +1,7 @@
 using UnityEngine;
 using Scripts.Event;
+using Zenject;
+using Scripts.Event.Events;
 
 namespace Scripts.Character.Player
 {
@@ -9,10 +11,12 @@ namespace Scripts.Character.Player
     public class PlayerPingManager : MonoBehaviour
     {
 
-        private readonly EventManager _events;
-        public PlayerPingManager(EventManager events)
+        private IEventManager _eventmanager;
+
+        [Inject]
+        public void Construct(IEventManager eventmanager)
         {
-            _events = events;
+            _eventmanager = eventmanager;
         }
 
 
@@ -39,7 +43,8 @@ namespace Scripts.Character.Player
             //If the ping key is pressed bring up the radial menu and allow the player to select a command for the squire to execute
             if (pingPressed)
             {
-                //Debug.Log("Ping key pressed");
+                Debug.Log("Ping key pressed");
+                _eventmanager.Publish(new PlayerPingedEvent(PingType.Location));
             } 
             
         }

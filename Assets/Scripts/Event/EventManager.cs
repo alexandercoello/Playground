@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 
 
@@ -8,7 +7,7 @@ namespace Scripts.Event
     /// <summary>
     /// A simple event manager for handling game events.
     /// </summary>
-    public class EventManager : MonoBehaviour, IEventManager
+    public class EventManager : IEventManager
     {
         private readonly Dictionary<Type, Delegate> _handlers = new();
         

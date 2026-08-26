@@ -682,6 +682,7 @@ GameObject:
   - component: {fileID: 138511217003237261}
   - component: {fileID: 5687877467892290636}
   - component: {fileID: 1854513687073868869}
+  - component: {fileID: 6069973778818150562}
   m_Layer: 0
   m_Name: Player Y Bot
   m_TagString: Player
@@ -861,6 +862,19 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &6069973778818150562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618315297720379723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d983cad0986c8da4da17967ae04add96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PingKey: 326
 --- !u!1 &2761491404170603667
 GameObject:
   m_ObjectHideFlags: 0
