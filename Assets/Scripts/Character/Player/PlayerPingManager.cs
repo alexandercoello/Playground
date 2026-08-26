@@ -32,7 +32,7 @@ namespace Scripts.Character.Player
         public float PingRange = 100f;
 
         
-        
+        [Header("Environment Layers")]
         RaycastHit pingedObject;
         public LayerMask groundLayer;
         public LayerMask interactableLayer;
