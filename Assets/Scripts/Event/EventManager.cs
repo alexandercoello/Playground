@@ -8,7 +8,7 @@ namespace Scripts.Event
     /// <summary>
     /// A simple event manager for handling game events.
     /// </summary>
-    public class EventManager : MonoBehaviour
+    public class EventManager : MonoBehaviour, IEventManager
     {
         private readonly Dictionary<Type, Delegate> _handlers = new();
         
