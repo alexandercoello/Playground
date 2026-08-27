@@ -27,11 +27,16 @@ namespace Scripts
             yRotation += mouseX;
             xRotation -= mouseY;
             
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);            
+                    
+        }
 
+        void LateUpdate()
+        {
+            // This is where you would handle any physics-based camera movement if needed.
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             player.rotation = Quaternion.Euler(0, yRotation, 0);
-                    
+            
         }
 
     }

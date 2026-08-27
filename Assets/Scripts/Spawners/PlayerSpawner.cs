@@ -9,7 +9,7 @@ namespace Scripts.Spawners
         protected override void Start()
         {
             base.Start();
-            SpawnObject();
+            SpawnObjectWithDependencies();
         }
 
         void Update()

@@ -3,20 +3,12 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.ProBuilder;
 
 namespace Scripts.Character.NonPlayerCharacter
 {
-    public class NonPlayerNavigationManager : MonoBehaviour
+    public class NonPlayerNavigationManager : BaseNavMeshNavigator
     {
         public NavigationType NavigationType = NavigationType.Stationary;
-        public NavMeshAgent NavMeshAgent;
-        public Animator animator;
-
-        public float NavMeshAgentCurrentSpeed
-        {
-            get {return NavMeshAgent.velocity.magnitude; }
-        }
 
         [Header("Route")]
         public GameObject PatrolRoute;
@@ -68,14 +60,6 @@ namespace Scripts.Character.NonPlayerCharacter
                 default:
                     break;
             }                    
-        }
-
-        void FixedUpdate()
-        {
-            if(!animator.IsUnityNull())
-            {
-                animator.SetFloat("Speed", NavMeshAgentCurrentSpeed);
-            }
         }
 
         void InitializeRouteNavigation()
