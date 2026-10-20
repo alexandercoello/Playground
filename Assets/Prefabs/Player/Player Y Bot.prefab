@@ -2871,6 +2871,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3540424258927077822, guid: d25ca32d651f0e3409564d1e83df8b70, type: 3}
+      propertyPath: SensX
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540424258927077822, guid: d25ca32d651f0e3409564d1e83df8b70, type: 3}
+      propertyPath: SensY
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540424258927077822, guid: d25ca32d651f0e3409564d1e83df8b70, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3132253971067139911}

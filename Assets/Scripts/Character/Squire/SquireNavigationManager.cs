@@ -8,34 +8,68 @@ namespace Scripts.Character.Squire
 {
     public class SquireNavigationManager : BaseNavMeshNavigator
     {
-        //Setup Idle logic to choose a point behind the player 
-        //Setup some kind of event driven system, listening for playing ping commands to control the navigation logic of the squire
+        private Transform playerTransform;
+        [SerializeField] private float followDistance = 2.5f;
+        [SerializeField] private float destinationUpdateThreshold = 5f;
+
+        private Vector3 lastFollowDestination;
+        private Vector3 lastPlayerPosition;
 
         void Start()
         {
-            
+            if (playerTransform == null)
+            {
+                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                if (playerObject != null)
+                {
+                    playerTransform = playerObject.transform;
+                }
+            }
+
+            UpdateFollowDestination(true);
         }
 
 
         void Update()
         {
-            
+            UpdateFollowDestination(false);
+        }
+
+        private void UpdateFollowDestination(bool forceUpdate)
+        {
+            if (playerTransform == null)
+            {
+                return;
+            }
+
+            //Determine an intial Vector3 follow position based on the player's position and forward direction, offset by the follow distance
+            //Set the squires destination to the follow position
+            //Only update the follow position when the player has moved (ignoring rotation)
+            Vector3 followPosition = playerTransform.position - playerTransform.forward * followDistance;
+
+            bool playerHasMoved = playerTransform.position != lastPlayerPosition;
+
+            if (!forceUpdate &&
+                (followPosition - lastFollowDestination).sqrMagnitude < destinationUpdateThreshold * destinationUpdateThreshold ||
+                !playerHasMoved)
+            {
+                // If the player hasn't moved significantly and the follow position hasn't changed much, we don't need to update the destination.
+                return;
+            }
+
+            if(AttemptToNavigateWithSamplePosition(followPosition))
+            {
+                lastFollowDestination = followPosition;
+                lastPlayerPosition = playerTransform.position;
+            }
+
         }
 
         public void NavigateToRaycastHit(RaycastHit destination)
         {
-            if (!NavMeshAgent.pathPending && !NavMeshAgent.hasPath)
-            {
-                NavMeshHit navmeshHit;
-                    
-                // 2. Sample within a small radius (e.g., 1.0 unit) to find the nearest valid NavMesh spot
-                if (NavMesh.SamplePosition(destination.point, out navmeshHit, 1.0f, NavMesh.AllAreas))
-                {
-                    // 3. Move agent to the validated NavMesh position
-                    NavMeshAgent.SetDestination(navmeshHit.position);
-                }
-            }           
-            
+            //Give the squire a new destination to navigate to, based on the raycast hit from the player ping event
+            //The Squire doesn't have to wait to reach the destination, it can be interrupted by a new ping event from the player
+            AttemptToNavigateWithSamplePosition(destination.point);
         }
 
     }

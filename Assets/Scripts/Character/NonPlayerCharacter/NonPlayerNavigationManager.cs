@@ -20,8 +20,6 @@ namespace Scripts.Character.NonPlayerCharacter
         public GameObject WanderArea;
         public float MinRestBetweenWanderTime = 0f;
         public float MaxRestBetweenWanderTime = 15f;
-        private bool isResting;
-
 
 
         void Start()
@@ -127,11 +125,9 @@ namespace Scripts.Character.NonPlayerCharacter
         
         IEnumerator RestBetweenWander()
         {
-            isResting = true;
             NavMeshAgent.isStopped = true;
             yield return new WaitForSeconds(Random.Range(MinRestBetweenWanderTime, MaxRestBetweenWanderTime));
 
-            isResting = false;
             NavMeshAgent.isStopped = false;
         }
 
