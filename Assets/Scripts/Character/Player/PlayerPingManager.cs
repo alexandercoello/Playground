@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Scripts.Event;
 using Zenject;
@@ -23,19 +24,23 @@ namespace Scripts.Character.Player
 
         [Header("Player Input Keys")]
         public KeyCode PingKey = KeyCode.Mouse3; 
-            
-        [Header("Player Input Bools")]
-        bool pingPressed;
+        public float LongPressDuration = 0.5f;
+        private bool IsLongPress;
+        private float pingPressedAtTime;
 
         [Header("Player")]
-        public Camera PlayerCamera;
+        [SerializeField] private Camera PlayerCamera;
+        [SerializeField] private CameraControls cameraControls;
         public float PingRange = 100f;
 
         
         [Header("Environment Layers")]
         RaycastHit pingedObject;
-        public LayerMask groundLayer;
-        public LayerMask interactableLayer;
+        [SerializeField] public LayerMask groundLayer;
+        [SerializeField] public LayerMask interactableLayer;
+
+        [Header("UI")]
+        public Canvas commandRadialMenu;
 
 
 
@@ -43,22 +48,66 @@ namespace Scripts.Character.Player
         void Start()
         {
 
-            
         }
 
         // Update is called once per frame
         void Update()
         {
-            pingPressed = Input.GetKeyDown(PingKey);
+            CheckForPingInput();
 
-            if (pingPressed)
-            {
-                PingTargetCheck(groundLayer);
-            } 
-            
         }
 
-        void PingTargetCheck(LayerMask targetLayer)
+        void CheckForPingInput()
+        {
+            if (Input.GetKeyDown(PingKey))
+            {
+                pingPressedAtTime = Time.time;
+            }
+
+            if(Input.GetKey(PingKey))
+            {
+                if (Time.time - pingPressedAtTime >= LongPressDuration)
+                {
+                    IsLongPress = true;
+                    OpenPingRadialMenu();
+                }
+            }
+
+            if(Input.GetKeyUp(PingKey))
+            {
+                if (IsLongPress)
+                {
+                    ClosePingRadialMenu();
+                }
+                else
+                {
+                    //Short press ping, check for ping target
+                    PingTargetCheck(groundLayer);
+                }
+
+                IsLongPress = false;
+            }
+        }
+
+        void OpenPingRadialMenu()
+        {
+            if(commandRadialMenu.gameObject is not null)
+            {
+                commandRadialMenu.enabled = true;
+                cameraControls.LockCameraAndShowCursor();
+            }
+        }
+
+        void ClosePingRadialMenu()
+        {
+            if(commandRadialMenu.gameObject is not null)
+            {
+                commandRadialMenu.enabled = false;
+                cameraControls.UnlockCameraAndHideCursor();
+            }
+        }
+
+        bool PingTargetCheck(LayerMask targetLayer)
         {
             Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
@@ -69,11 +118,14 @@ namespace Scripts.Character.Player
             {
                 //Ping hit something in target Layer
                 Debug.Log($"Pinged object: {pingedObject.collider.gameObject.name} at position: {pingedObject.point}");
-                _eventmanager.Publish(new PlayerPingEvent(PingType.Location, pingedObject));
-                return;
+                _eventmanager.Publish(new PlayerPingEvent(PingType.GoTo, pingedObject));
+                return true;
             }
 
+            return false;
         }
 
     }
+
+
 }

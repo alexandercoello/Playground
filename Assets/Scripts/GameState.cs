@@ -9,7 +9,6 @@ namespace Scripts
         public static bool isPaused;
         public KeyCode pauseKeyCode = KeyCode.Escape;
         public Canvas pauseMenuCanvas;
-        bool pauseKeyPressed;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -25,15 +24,13 @@ namespace Scripts
 
         void ListenForPause()
         {
-            pauseKeyPressed = Input.GetKeyDown(pauseKeyCode);
-
-            if(pauseKeyPressed && !isPaused)
+            if(Input.GetKeyDown(pauseKeyCode) && !isPaused)
             {
                 PauseGame();               
                 return;
             }
 
-            if(pauseKeyPressed && isPaused)
+            if(Input.GetKeyDown(pauseKeyCode) && isPaused)
             {
                 ResumeGame();
                 return;

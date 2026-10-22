@@ -64,7 +64,7 @@ namespace Scripts.Character.Squire
             }
 
         }
-        
+
         public void NavigateToRaycastHit(RaycastHit destination)
         {
             //Give the squire a new destination to navigate to, based on the raycast hit from the player ping event

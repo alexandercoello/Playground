@@ -21,10 +21,11 @@ namespace Scripts.Event.Events
 
     public enum PingType
     {
-        None,
-        Location,
+        GoTo,
+        Follow,
+        Stay,
         Interactable,
-        Pickup,
+        Item,
         Enemy
     }
 }
