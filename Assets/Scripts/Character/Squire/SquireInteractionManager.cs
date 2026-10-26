@@ -16,11 +16,6 @@ namespace Scripts.Character.Squire
         {
             if(targetInteractable != null)
             {
-                if(!isNavigatingToInteractable)
-                {
-                    NavigateToInteractable();
-                }
-
                 if(InteractableRangeCheck())
                 {
                     Interact();                    
@@ -32,8 +27,9 @@ namespace Scripts.Character.Squire
         {
             if(targetInteractable != null)
                 Reset();
-
-            targetInteractable = pingedObject;            
+            
+            targetInteractable = pingedObject;
+            NavigateToInteractable();
         }
 
         //Check if the Interactable is in range of the Squire, if it is then return true, else return false

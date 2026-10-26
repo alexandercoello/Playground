@@ -36,7 +36,6 @@ namespace Scripts.Character.Squire
 					squireNavigationManager.NavigateToRaycastHit(pingEvent.PingedObject);
 					break;
 				case PingType.Interactable:
-					Debug.Log("SquireCommandEventManager received an Interactable ping.");
 					squireInteractionManager.InteractablePinged(pingEvent.PingedObject);
 					break;
 				default:

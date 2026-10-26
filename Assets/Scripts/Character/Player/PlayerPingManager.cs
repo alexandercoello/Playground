@@ -82,11 +82,11 @@ namespace Scripts.Character.Player
                 {
                     if(PingTargetLayer(interactableLayer, PingType.Interactable))
                     {
-                        Debug.Log("Pinged an interactable object.");
+                        //Debug.Log("Pinged an interactable object.");
                     }
                     else if(PingTargetLayer(groundLayer, PingType.GoTo))
                     {
-                        Debug.Log("Pinged an ground object.");                
+                        //Debug.Log("Pinged an ground object.");                
                     }
                 }
 
@@ -117,7 +117,7 @@ namespace Scripts.Character.Player
             Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
             // Visual debug line in the Scene view
-            Debug.DrawRay(ray.origin, ray.direction * PingRange, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * PingRange, Color.red);
 
             if (Physics.Raycast(ray, out pingedObject, PingRange, targetLayer))
             {
