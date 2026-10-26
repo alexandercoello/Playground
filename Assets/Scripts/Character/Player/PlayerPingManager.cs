@@ -40,7 +40,7 @@ namespace Scripts.Character.Player
         [SerializeField] public LayerMask interactableLayer;
 
         [Header("UI")]
-        public Canvas commandRadialMenu;
+        public GameObject commandRadialMenu;
 
 
 
@@ -98,7 +98,7 @@ namespace Scripts.Character.Player
         {
             if(commandRadialMenu.gameObject is not null)
             {
-                commandRadialMenu.enabled = true;
+                commandRadialMenu.SetActive(true);
                 cameraControls.LockCameraAndShowCursor();
             }
         }
@@ -107,7 +107,7 @@ namespace Scripts.Character.Player
         {
             if(commandRadialMenu.gameObject is not null)
             {
-                commandRadialMenu.enabled = false;
+                commandRadialMenu.SetActive(false);
                 cameraControls.UnlockCameraAndHideCursor();
             }
         }
@@ -128,6 +128,24 @@ namespace Scripts.Character.Player
             }
 
             return false;
+        }
+
+        public void onFollowPingPressed()
+        {
+            Debug.Log("Follow Ping Pressed");
+            _eventmanager.Publish(new PlayerPingEvent(PingType.Follow));            
+        }
+
+        public void onStayPingPressed()
+        {
+            Debug.Log("Stay Ping Pressed");
+            _eventmanager.Publish(new PlayerPingEvent(PingType.Stay));            
+        }
+
+        public void onGoToPingPressed()
+        {
+            Debug.Log("Go To Ping Pressed");
+            _eventmanager.Publish(new PlayerPingEvent(PingType.GoTo));            
         }
 
     }

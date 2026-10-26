@@ -38,6 +38,12 @@ namespace Scripts.Character.Squire
 				case PingType.Interactable:
 					squireInteractionManager.InteractablePinged(pingEvent.PingedObject);
 					break;
+				case PingType.Follow:
+					squireNavigationManager.OnFollowPlayerPing();
+					break;
+				case PingType.Stay:
+					squireNavigationManager.OnStayPing();
+					break;
 				default:
 					Debug.Log($"SquireCommandEventManager received an unhandled ping type: {pingEvent.PingType}");
 					break;

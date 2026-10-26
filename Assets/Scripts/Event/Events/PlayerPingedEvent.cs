@@ -10,12 +10,17 @@ namespace Scripts.Event.Events
     {
             public PingType PingType { get; }
             public RaycastHit PingedObject { get; }
-
+            public PlayerPingEvent(PingType pingType)
+            {
+                PingType = pingType;
+            }
+            
             public PlayerPingEvent(PingType pingType, RaycastHit pingedObject)
             {
                 PingType = pingType;
                 PingedObject = pingedObject;
             }
+
 
     }
 

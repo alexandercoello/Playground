@@ -14,6 +14,7 @@ namespace Scripts.Character.Squire
 
         private Vector3 lastFollowDestination;
         private Vector3 lastPlayerPosition;
+        private bool isFollowingPlayer = true;
 
         void Start()
         {
@@ -32,7 +33,10 @@ namespace Scripts.Character.Squire
 
         void Update()
         {
-            UpdateFollowDestination(false);
+            if (isFollowingPlayer)
+            {
+                UpdateFollowDestination(false);
+            }
         }
 
         private void UpdateFollowDestination(bool forceUpdate)
@@ -75,6 +79,16 @@ namespace Scripts.Character.Squire
         public void NavigateNearObject(Transform target, float searchRadius = 5f)
         {
             AttemptToNavigateWithSamplePosition(target.position, searchRadius);
+        }
+
+        public void OnFollowPlayerPing()
+        {
+            isFollowingPlayer = true;
+        }
+
+        public void OnStayPing()
+        {
+            isFollowingPlayer = false;
         }
 
     }
