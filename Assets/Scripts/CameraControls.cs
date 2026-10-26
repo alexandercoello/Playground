@@ -24,11 +24,11 @@ namespace Scripts
         {
             if(!IsCameraLocked)
             {
-                UpdateCamera();
+                GetUserInput();
             }                            
         }
 
-        void UpdateCamera()
+        void GetUserInput()
         {
             // This method can be used to update the camera's position or other properties if needed.
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * SensX;

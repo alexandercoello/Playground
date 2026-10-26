@@ -54,7 +54,6 @@ namespace Scripts.Character.Player
         void Update()
         {
             CheckForPingInput();
-
         }
 
         void CheckForPingInput()
@@ -81,8 +80,14 @@ namespace Scripts.Character.Player
                 }
                 else
                 {
-                    //Short press ping, check for ping target
-                    PingTargetCheck(groundLayer);
+                    if(PingTargetLayer(interactableLayer, PingType.Interactable))
+                    {
+                        Debug.Log("Pinged an interactable object.");
+                    }
+                    else if(PingTargetLayer(groundLayer, PingType.GoTo))
+                    {
+                        Debug.Log("Pinged an ground object.");                
+                    }
                 }
 
                 IsLongPress = false;
@@ -107,7 +112,7 @@ namespace Scripts.Character.Player
             }
         }
 
-        bool PingTargetCheck(LayerMask targetLayer)
+        bool PingTargetLayer(LayerMask targetLayer, PingType pingType)
         {
             Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
@@ -117,8 +122,8 @@ namespace Scripts.Character.Player
             if (Physics.Raycast(ray, out pingedObject, PingRange, targetLayer))
             {
                 //Ping hit something in target Layer
-                Debug.Log($"Pinged object: {pingedObject.collider.gameObject.name} at position: {pingedObject.point}");
-                _eventmanager.Publish(new PlayerPingEvent(PingType.GoTo, pingedObject));
+                //Debug.Log($"Pinged object: {pingedObject.collider.gameObject.name} at position: {pingedObject.point}");
+                _eventmanager.Publish(new PlayerPingEvent(pingType, pingedObject));
                 return true;
             }
 

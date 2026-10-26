@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 278392497}
   - component: {fileID: 278392496}
   - component: {fileID: 278392495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2667,6 +2667,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squire
       objectReference: {fileID: 0}
+    - target: {fileID: 4336464014178488088, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+      propertyPath: squireInteractionManager
+      value: 
+      objectReference: {fileID: 1649186182}
     - target: {fileID: 4686947134602981653, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
       propertyPath: destinationUpdateThreshold
       value: 2.5
@@ -2674,7 +2678,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4038522380516617824, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1649186182}
   m_SourcePrefab: {fileID: 100100000, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
 --- !u!1001 &393710213
 PrefabInstance:
@@ -3735,7 +3742,7 @@ GameObject:
   - component: {fileID: 975219104}
   - component: {fileID: 975219103}
   - component: {fileID: 975219102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6234,6 +6241,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 39070671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1649186173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4038522380516617824, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+  m_PrefabInstance: {fileID: 338002499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1649186174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4686947134602981653, guid: 9e5276601ead77048956a28e1c21a9a8, type: 3}
+  m_PrefabInstance: {fileID: 338002499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649186173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ca4a6a8dd38d44a9a1770b93568f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1649186182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649186173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3e27a7fd978eb43bf9ab683d9ad181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squireNavigationManager: {fileID: 1649186174}
+  InteractRange: 1.5
 --- !u!1001 &1696882088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6614,7 +6651,7 @@ GameObject:
   - component: {fileID: 1869363511}
   - component: {fileID: 1869363510}
   - component: {fileID: 1869363509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8031,7 +8068,7 @@ GameObject:
   - component: {fileID: 1984455005}
   - component: {fileID: 1984455004}
   - component: {fileID: 1984455003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

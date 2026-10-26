@@ -27,10 +27,10 @@ namespace Scripts.Character
         /// </summary>
         /// <param name="position">The target position to navigate to.</param>
         /// <returns>True if the navigation was successful, false otherwise.</returns>
-        protected bool AttemptToNavigateWithSamplePosition(Vector3 position)
+        protected bool AttemptToNavigateWithSamplePosition(Vector3 position, float sampleDistance = 1.0f)
         {
             NavMeshHit navmeshHit;
-            if (NavMesh.SamplePosition(position, out navmeshHit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(position, out navmeshHit, sampleDistance, NavMesh.AllAreas))
             {
                 NavMeshAgent.SetDestination(navmeshHit.position);
                 return true;

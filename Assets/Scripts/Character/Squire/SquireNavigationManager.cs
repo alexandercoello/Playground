@@ -72,6 +72,28 @@ namespace Scripts.Character.Squire
             AttemptToNavigateWithSamplePosition(destination.point);
         }
 
+        // public bool TryGetNearestNavMeshPoint(out Vector3 point, Transform target, float searchRadius = 5f)
+        // {
+        //     point = default;
+
+        //     if (!NavMesh.SamplePosition(
+        //             target.position,
+        //             out NavMeshHit navMeshHit,
+        //             searchRadius,
+        //             NavMeshAgent.areaMask))
+        //     {
+        //         return false;
+        //     }
+
+        //     point = navMeshHit.position;
+        //     return true;
+        // }
+
+        public void NavigateNearObject(Transform target, float searchRadius = 5f)
+        {
+            AttemptToNavigateWithSamplePosition(target.position, searchRadius);
+        }
+
     }
 
 }

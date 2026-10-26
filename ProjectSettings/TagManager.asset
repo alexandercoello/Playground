@@ -19,7 +19,7 @@ TagManager:
   - UI
   - NavMesh
   - Interactable
-  - 
+  - SceneObject
   - 
   - IsGround
   - 

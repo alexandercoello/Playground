@@ -19,7 +19,8 @@ namespace Scripts.Character.Squire
 			_eventmanager = eventManager;
 		}
 
-		public SquireNavigationManager squireNavigationManager;
+		[SerializeField] private SquireNavigationManager squireNavigationManager;
+		[SerializeField] private SquireInteractionManager squireInteractionManager;
 
 		void Start()
 		{
@@ -29,9 +30,21 @@ namespace Scripts.Character.Squire
 
 		private void OnPlayerPing(PlayerPingEvent pingEvent)
 		{
-			Debug.Log($"SquireCommandEventManager received PlayerPingEvent with PingType: {pingEvent.PingType}");
-            
-			squireNavigationManager.NavigateToRaycastHit(pingEvent.PingedObject);
+			switch (pingEvent.PingType)
+			{
+				case PingType.GoTo:
+					squireNavigationManager.NavigateToRaycastHit(pingEvent.PingedObject);
+					break;
+				case PingType.Interactable:
+					Debug.Log("SquireCommandEventManager received an Interactable ping.");
+					squireInteractionManager.InteractablePinged(pingEvent.PingedObject);
+					break;
+				default:
+					Debug.Log($"SquireCommandEventManager received an unhandled ping type: {pingEvent.PingType}");
+					break;
+			}
 		}
+
+
 	}
 }
