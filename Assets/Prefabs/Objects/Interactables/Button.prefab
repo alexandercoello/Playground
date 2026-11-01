@@ -145,10 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9088bf607d7be0e45986163767977dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInteractable: 1
+  ResetsAfterLockout: 1
+  InteractableLockoutTimer: 3
   LinkedGameObjects:
   - {fileID: 0}
-  IsInteractable: 0
-  ButtonActiveTime: 5
+  ActivateAudioClips: []
+  DeactivateAudioClips: []
 --- !u!1 &2920287452152203995
 GameObject:
   m_ObjectHideFlags: 0
