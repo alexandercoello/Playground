@@ -11,10 +11,12 @@ namespace Scripts.Character.Squire
         private Transform playerTransform;
         [SerializeField] private float followDistance = 2.5f;
         [SerializeField] private float destinationUpdateThreshold = 5f;
+        [SerializeField] private float facePlayerRotationSpeed = 180f;
 
         private Vector3 lastFollowDestination;
         private Vector3 lastPlayerPosition;
         private bool isFollowingPlayer = true;
+        private Coroutine facePlayerCoroutine;
 
         void Start()
         {
@@ -101,16 +103,46 @@ namespace Scripts.Character.Squire
 
         private void FacePlayer()
         {
-            if (playerTransform == null)            
+            if (playerTransform == null)
                 return;
-            
 
-            Vector3 directionToPlayer = playerTransform.position - transform.position;
-            directionToPlayer.y = 0f;
-            if (directionToPlayer.sqrMagnitude > 0f)
+            if (facePlayerCoroutine != null)
+                return;
+
+            facePlayerCoroutine = StartCoroutine(RotateTowardsPlayer());
+        }
+
+
+        //AI wrote this and I don't get it. 
+        private IEnumerator RotateTowardsPlayer()
+        {
+            yield return null;
+
+            bool wasUpdatingRotation = NavMeshAgent.updateRotation;
+            NavMeshAgent.updateRotation = false;
+
+            while (playerTransform != null)
             {
-                transform.rotation = Quaternion.LookRotation(directionToPlayer);
+                Vector3 directionToPlayer = playerTransform.position - transform.position;
+                directionToPlayer.y = 0f;
+
+                if (directionToPlayer.sqrMagnitude <= 0f)
+                    break;
+
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRotation,
+                    facePlayerRotationSpeed * Time.deltaTime);
+
+                if (Quaternion.Angle(transform.rotation, targetRotation) <= 0.1f)
+                    break;
+
+                yield return null;
             }
+
+            NavMeshAgent.updateRotation = wasUpdatingRotation;
+            facePlayerCoroutine = null;
         }
 
 
