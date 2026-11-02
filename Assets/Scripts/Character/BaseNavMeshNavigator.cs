@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Scripts.Character
 {
@@ -8,6 +9,7 @@ namespace Scripts.Character
     {
         public NavMeshAgent NavMeshAgent;
         public Animator animator;
+        private bool isNavigating = false;
 
         public float NavMeshAgentCurrentSpeed
         {
@@ -19,6 +21,11 @@ namespace Scripts.Character
             if(!animator.IsUnityNull())
             {
                 animator.SetFloat("Speed", NavMeshAgentCurrentSpeed);
+            }
+
+            if (isNavigating)
+            {
+                CheckIfNavigationIsComplete();
             }
         }
 
@@ -33,10 +40,30 @@ namespace Scripts.Character
             if (NavMesh.SamplePosition(position, out navmeshHit, sampleDistance, NavMesh.AllAreas))
             {
                 NavMeshAgent.SetDestination(navmeshHit.position);
+                isNavigating = true;
                 return true;
             }
 
             return false;
+        }
+
+        protected void SetNavigationTargetToCurrentLocation()
+        {
+            NavMeshAgent.SetDestination(transform.position);
+        }
+
+        void CheckIfNavigationIsComplete()
+        {
+            if (!NavMeshAgent.pathPending && !NavMeshAgent.hasPath)
+            {
+                isNavigating = false;
+                OnNavigationComplete();
+            }
+        }
+
+        protected virtual void OnNavigationComplete()
+        {
+            // Override this method to handle navigation completion logic.
         }
     }
 }

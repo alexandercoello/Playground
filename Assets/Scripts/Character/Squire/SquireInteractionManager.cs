@@ -8,7 +8,6 @@ namespace Scripts.Character.Squire
         [SerializeField] private SquireNavigationManager squireNavigationManager;
         [SerializeField] private float InteractRange = 1.5f;
         RaycastHit? targetInteractable;
-        bool isNavigatingToInteractable = false;
 
 
         // Update is called once per frame
@@ -52,7 +51,6 @@ namespace Scripts.Character.Squire
             if(targetInteractable != null)
             {
                 squireNavigationManager.NavigateNearObject(targetInteractable.Value.transform, 10f);
-                isNavigatingToInteractable = true;
             }
         }
 
@@ -67,7 +65,7 @@ namespace Scripts.Character.Squire
         void Reset()
         {
             targetInteractable = null;
-            isNavigatingToInteractable = false;
+            squireNavigationManager.Stop();
         }
     }
 }

@@ -41,10 +41,8 @@ namespace Scripts.Character.Squire
 
         private void UpdateFollowDestination(bool forceUpdate)
         {
-            if (playerTransform == null)
-            {
-                return;
-            }
+            if (playerTransform == null)            
+                return;            
 
             //Determine an intial Vector3 follow position based on the player's position and forward direction, offset by the follow distance
             //Set the squires destination to the follow position
@@ -66,7 +64,6 @@ namespace Scripts.Character.Squire
                 lastFollowDestination = followPosition;
                 lastPlayerPosition = playerTransform.position;
             }
-
         }
 
         public void NavigateToRaycastHit(RaycastHit destination)
@@ -90,6 +87,33 @@ namespace Scripts.Character.Squire
         {
             isFollowingPlayer = false;
         }
+
+        public void Stop()
+        {
+            isFollowingPlayer = false;
+            SetNavigationTargetToCurrentLocation();
+        }
+
+        protected override void OnNavigationComplete()
+        {
+            FacePlayer();
+        }
+
+        private void FacePlayer()
+        {
+            if (playerTransform == null)            
+                return;
+            
+
+            Vector3 directionToPlayer = playerTransform.position - transform.position;
+            directionToPlayer.y = 0f;
+            if (directionToPlayer.sqrMagnitude > 0f)
+            {
+                transform.rotation = Quaternion.LookRotation(directionToPlayer);
+            }
+        }
+
+
 
     }
 
