@@ -9,9 +9,6 @@ namespace Scripts.Objects.Interactables
     /// </summary>
     public class Button : AnimatedDynamicSceneObjectController
     {        
-        // void Start()
-        // {
-        //     //animator.Play("IdleButton", 0, 0f);
-        // }
+
     }
 }

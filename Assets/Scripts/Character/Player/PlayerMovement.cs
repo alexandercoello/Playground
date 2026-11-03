@@ -10,18 +10,23 @@ namespace Scripts.Character.Player
 
         [Header("Player")]
         //Player UI Reticle
-        public PlayerUIReticle reticle;
+        [SerializeField] private PlayerUIReticle reticle;
 
         [Header("Player Input Keys")]
-        public KeyCode JumpKey = KeyCode.Space;
-        public KeyCode SprintKey = KeyCode.LeftShift;
-        public KeyCode CrouchKey = KeyCode.LeftControl;
+        [SerializeField] private KeyCode JumpKey = KeyCode.Space;
+        [SerializeField] private KeyCode SprintKey = KeyCode.LeftShift;
+        [SerializeField] private KeyCode CrouchKey = KeyCode.LeftControl;
 
         [Header("Player Input Bools")]
         bool jumpPressed;
         bool crouchPressed;
-        bool sprintPressed;        
+        bool sprintPressed;
 
+        [Header("Player Audio")]
+        [SerializeField] private PlayerFootstepAudioPlayer footstepAudioPlayer;
+        private float nextFootstepTime;
+        [SerializeField] private float walkingFootstepAudioInterval;
+        [SerializeField] private float sprintingFootstepAudioInterval;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected override void Start()
@@ -55,7 +60,19 @@ namespace Scripts.Character.Player
 
             bool playerIsMoving = HorizontalInputRaw != 0 || VerticalInputRaw != 0 || !CanJump;
 
-            reticle.UpdateReticle(playerIsMoving);   
+            if(playerIsMoving)            
+                PlayFootstepAudio();
+            
+            reticle.UpdateReticle(playerIsMoving);               
+        }
+
+        private void PlayFootstepAudio()
+        {
+            if(footstepAudioPlayer != null && Time.time >= nextFootstepTime)
+            {
+                footstepAudioPlayer.PlayRandomSound();
+                nextFootstepTime = Time.time + UnityEngine.Random.Range(0f, 0.05f) + (IsSprinting ? sprintingFootstepAudioInterval : walkingFootstepAudioInterval);
+            }
         }
 
         protected override void JumpCheck()

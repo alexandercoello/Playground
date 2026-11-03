@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Scripts.Utility;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 
 namespace Scripts.Objects.Base
 {
@@ -10,7 +10,7 @@ namespace Scripts.Objects.Base
     /// <summary>
     /// Base Class Object that allows controlling of DynamicSceneObjects. Interactables and PlayerDetectors may implement this.
     /// </summary>
-    public abstract class AnimatedDynamicSceneObjectController : Interactable 
+    public abstract class AnimatedDynamicSceneObjectController : Interactable
     {
         [SerializeField] private List<GameObject> LinkedGameObjects;
         [SerializeField] private List<AudioClip> ActivateAudioClips;
